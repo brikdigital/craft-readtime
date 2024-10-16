@@ -1,6 +1,6 @@
 <img src="src/icon.svg" alt="icon" width="100" height="100">
 
-# Read Time plugin for Craft CMS 3
+# Read Time plugin for Craft CMS 5
 
 Calculate the estimated read time for content.
 
@@ -8,7 +8,7 @@ Calculate the estimated read time for content.
 
 #### Requirements
 
-This plugin requires Craft CMS 4.0.0, or later.
+This plugin requires Craft CMS 5.0.0, or later.
 
 #### Plugin Store
 
@@ -138,4 +138,4 @@ return [
 
 Some things to do, and ideas for potential features:
 
-Brought to you by [Luke Youell](https://github.com/lukeyouell)
+Brought to you by [Luke Youell](https://github.com/lukeyouell), forked and updated to Craft 5 by Brik.digital.

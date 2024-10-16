@@ -12,9 +12,9 @@ namespace jalendport\readtime\twigextensions;
 
 use Craft;
 use craft\elements\Entry;
-use craft\elements\MatrixBlock;
 use craft\errors\InvalidFieldException;
 use craft\fields\Matrix;
+use craft\fields\Table;
 use craft\helpers\StringHelper;
 use jalendport\readtime\models\Settings;
 use jalendport\readtime\ReadTime;
@@ -22,7 +22,6 @@ use jalendport\readtime\models\TimeModel;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use verbb\supertable\fields\SuperTableField;
 use yii\base\ErrorException;
 
 class ReadTimeTwigExtension extends AbstractExtension
@@ -72,7 +71,7 @@ class ReadTimeTwigExtension extends AbstractExtension
                                 $totalSeconds = $totalSeconds + $seconds;
                             }
                         }
-                    } elseif($field instanceof SuperTableField) {
+                    } elseif($field instanceof Table) {
                         foreach($element->getFieldValue($field->handle)->all() as $block) {
                             $blockFields = $block->getFieldLayout()->getFields();
 
@@ -108,7 +107,7 @@ class ReadTimeTwigExtension extends AbstractExtension
             Craft::info('matrix field provided', 'readtime');
 
             foreach ($element as $block) {
-                if ($block instanceof MatrixBlock) {
+                if ($block instanceof Entry) {
                     $blockFields = $block->getFieldLayout()->getCustomFields();
 
                     foreach ($blockFields as $blockField) {
@@ -151,8 +150,7 @@ class ReadTimeTwigExtension extends AbstractExtension
 
         $string = StringHelper::toString($value);
         $wordCount = StringHelper::countWords($string);
-        $seconds = floor($wordCount / $wpm * 60);
 
-        return $seconds;
+        return floor($wordCount / $wpm * 60);
     }
 }
